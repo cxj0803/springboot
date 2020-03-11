@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="springboot.itheima.dao.biz.myMapper.HelloMapper">
+    <select id="getHello" resultType="java.util.Map">
+        SELECT * FROM synergister_sdb1_15.`qx`
+    </select>
+    
+    <resultMap type="springboot.itheima.entity.User" id="resultUserMap">
+        <result property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="mobile" column="mobile"/>
+    
+	    <collection property="posts" ofType="springboot.itheima.entity.Post" column="userid">
+	        <id property="id" column="post_id" javaType="int" jdbcType="INTEGER"/>
+	        <result property="title" column="title" javaType="string" jdbcType="VARCHAR"/>
+	        <result property="content" column="content" javaType="string" jdbcType="VARCHAR"/>
+	        <result property="userid" column="userid" javaType="int" jdbcType="INTEGER"/>
+	    </collection>
+    </resultMap>
+    
+    <select id="getUser" resultMap="resultUserMap" parameterType="int">
+        SELECT *
+		FROM USER U, POST P
+		WHERE U.ID = P.`USERID`
+		AND U.`ID` = #{user_id}
+    </select>
+</mapper>

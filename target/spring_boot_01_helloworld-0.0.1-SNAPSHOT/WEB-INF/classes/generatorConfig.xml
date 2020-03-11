@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>   
+    <classPathEntry  location="E:\demo\springbootTest\src\main\resources\mysql-connector-java-6.0.4.jar"></classPathEntry>
+    <context id="DB2Tables"  targetRuntime="MyBatis3">
+	   <!-- 指定生成的java文件的编码,没有直接生成到项目时中文可能会乱码 -->
+	   <property name="javaFileEncoding" value="UTF-8"/>
+	
+	   <!-- 指定数据库地址、用户名、密码 -->
+	    <jdbcConnection driverClass="com.mysql.jdbc.Driver" 
+	            connectionURL="jdbc:mysql://localhost:3306/synergister_sdb1_15?serverTimezone=UTC" userId="root" password="123456">
+	    </jdbcConnection>
+	    <javaTypeResolver>
+	            <property name="forceBigDecimals" value="false"/>
+	    </javaTypeResolver>
+	
+	   <!--指定实体类路径-->
+	    <javaModelGenerator targetPackage="springboot.itheima.entity" targetProject="E:/demo/springbootTest/src/main/java">
+	            <property name="enableSubPackages" value="true"/>
+	            <property name="trimStrings" value="true"/>
+	    </javaModelGenerator>
+	
+	   <!--指定Mapper.xml路径-->
+	    <sqlMapGenerator targetPackage="springboot.itheima.dao.mybatis.sqlMap" targetProject="E:/demo/springbootTest/src/main/java">
+	            <property name="enableSubPackages" value="true"/>
+	    </sqlMapGenerator>
+	
+	   <!-- 指定Mapper.java路径-->
+	    <javaClientGenerator type="XMLMAPPER" targetPackage="springboot.itheima.dao.mybatis.mapper" targetProject="E:/demo/springbootTest/src/main/java">
+	            <property name="enableSubPackages" value="true"/>
+	    </javaClientGenerator>
+	
+	   <!-- 指定表、实体类名、是否自动生成部分方法-->
+	   <table tableName="qx" domainObjectName="Qx"></table>
+   </context>
+</generatorConfiguration>
